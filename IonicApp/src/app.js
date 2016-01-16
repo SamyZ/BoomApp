@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'firebase'])
 
-.run(function($ionicPlatform) {
+.run(['$ionicPlatform', function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,22 +21,22 @@ angular.module('starter', ['ionic', 'firebase'])
       StatusBar.styleDefault();
     }
   });
-})
+}])
 
 
-.factory("Items", function($firebaseArray) {
-  var itemsRef = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com/items");
+.factory("Items", ['$firebaseArray', function($firebaseArray) {
+  var itemsRef = new Firebase("https://sportchallenge.firebaseio.com/items");
   return $firebaseArray(itemsRef);
-})
+}])
 
-.controller("ListCtrl", function($scope, Items) {
+.controller("ListCtrl", ['$scope', 'Items', function($scope, Items) {
   $scope.items = Items;
   $scope.addItem = function() {
-    var name = prompt("What do you need to buy?");
+    var name = prompt("What do you need to buy dude?");
     if (name) {
       $scope.items.$add({
         "name": name
       });
     }
   };
-});
+}]);
