@@ -14,7 +14,7 @@ var runSequence = require('run-sequence');
 
 var paths = {
   sass: ['./src/**/*.scss'],
-  tpls: ['./src/**/*.html'],
+  tpls: ['./src/**/*.tpl.html'],
   js: ['./src/**/*.js']
 };
 

@@ -1,9 +1,4 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'firebase'])
+angular.module('sportChallenge', ['ionic', 'firebase', 'templates'])
 
 .run(['$ionicPlatform', function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +18,71 @@ angular.module('starter', ['ionic', 'firebase'])
   });
 }])
 
+.config(['$stateProvider', '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
 
+    $urlRouterProvider.otherwise("/");
+
+    $stateProvider
+
+      .state('home', {
+        url: "/home",
+        templateUrl: "tpls/home.tpl.html"
+      })
+
+      .state('challenges', {
+        abstract: true,
+        url: "/challenges",
+        template: '<ion-nav-view name="content"></ion-nav-view>'
+      })
+
+      .state('challenges.new', {
+        url: "/new",
+        views: {
+          'content' :{
+            templateUrl: "tpls/challenges/new/main.tpl.html"
+          }
+        }
+      })
+      .state('challenges.new.friends', {
+        url: "/friends",
+        views: {
+          'content@challenges' :{
+            templateUrl: "tpls/challenges/new/friends.tpl.html"
+          }
+        }
+      })
+
+      .state('challenges.active', {
+        url: "/active",
+        views: {
+          'content' :{
+            templateUrl: "tpls/challenges/active/main.tpl.html"
+          }
+        }
+      })
+
+      .state('challenges.finished', {
+        url: "/finished",
+        views: {
+          'content' :{
+            templateUrl: "tpls/challenges/finished/main.tpl.html"
+          }
+        }
+      });
+
+    $urlRouterProvider.otherwise("/home");
+
+  }])
+
+  .controller('HomeTabCtrl', ['$scope', function($scope) {
+    console.log('HomeTabCtrl');
+  }]);
+
+
+
+
+/*
 .factory("Items", ['$firebaseArray', function($firebaseArray) {
   var itemsRef = new Firebase("https://sportchallenge.firebaseio.com/items");
   return $firebaseArray(itemsRef);
@@ -40,3 +99,4 @@ angular.module('starter', ['ionic', 'firebase'])
     }
   };
 }]);
+*/
