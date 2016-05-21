@@ -1,0 +1,27 @@
+{
+  "name": "reactNativeFirebaseStartApp",
+  "version": "0.0.1",
+  "description": "Get started with React Native and Firebase",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SamyZ/react-native-firebase-startapp"
+  },
+  "author": "Jeremy Colin",
+  "license": "MIT",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-native": "^0.26.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "babel-preset-react-native": "^1.8.0",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.2",
+    "eslint-plugin-react": "^5.1.1"
+  }
+}
