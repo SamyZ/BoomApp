@@ -1,46 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
+import mainStyles from './styles/main';
+import Firebase from 'firebase';
+
+const firebaseRef = new Firebase('https://reactnativestartapp.firebaseio.com'); // Ready to use
 
 const reactNativeFirebaseStartApp = () => (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>
-        Welcome to React Native!
-      </Text>
-      <Text style={styles.instructions}>
-        To get started, js/index.js
-      </Text>
-      <Text style={styles.instructions}>
-        Shake or press menu button for dev menu
-      </Text>
-    </View>
-)
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  <View style={mainStyles.container} >
+    <Text style={mainStyles.welcome}>
+      Welcome to React Native!
+    </Text>
+    <Text style={mainStyles.instructions}>
+      To get started edit js/index.js
+    </Text>
+    <Text style={mainStyles.instructions}>
+      Shake or press menu button for dev menu
+    </Text>
+  </View>
+);
 
 export default reactNativeFirebaseStartApp;
