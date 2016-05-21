@@ -1,6 +1,15 @@
-# react-native-firebase-startapp
+# BoomApp
 
-A simple starter example for a mobile app using React Native with Firebase.
+Sport & Social App that will push your motivation up to the roof
+
+Boom is a social sport application that will help athletes to
+improve their performance, or casual sportive to have some
+regularity in their pratices. Sport is something that has to be
+shared and enjoyed with others people. Even if Boom is an
+application, it will allow you to sweat, try hard and feel your
+body getting stronger with your friends. The only way to user
+this application is by challenging one or many of your friends
+on sport you share with them.
 
 ## Requirements
 
@@ -13,13 +22,15 @@ A simple starter example for a mobile app using React Native with Firebase.
 - [Babel](http://babeljs.io/) `6.x.x` for ES6+ support
 - [Firebase](https://firebase.google.com/) for iOS development
 
+## UX Guideline
+
+Can be found under ConceptArt in BoomApp.pdf
+
 ## Get Started
 
 Clone the repository
 and start :
 ```shell
-$ git clone https://github.com/SamyZ/react-native-firebase-startapp.git myAwesomeApp
-$ cd myAwesomeApp
 $ npm i                         # Install Node.js components listed in ./package.json
 ```
 
@@ -36,5 +47,3 @@ Start your emulator (Genymotion for example)
 ```shell
 $ react-native run-android
 ```
-## Issues
-If you run into any issues please see the [Getting Started](http://facebook.github.io/react-native/docs/getting-started.html) guide for React Native before submitting an is
