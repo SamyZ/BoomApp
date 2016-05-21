@@ -1,0 +1,18 @@
+1. Un sport
+Soit du cardio training (course, vélo, natation)
+Soit de fitness (abdo, pompe, traction, burpeese, squat, ou leur propre mouvement)
+2. D'une cotation
+En cardio, c'est le nombre de km
+En fintesse, c'est la durée du programme
+3. D'une recurrence
+Soit 1 à 3 fois/jour, 1 à 3/fois par semaine
+4. D'une durée
+en semaine, mois, ou pour les plus débile années
+5. D'un à 3 amis à challenger
+L'idée, c'est d'éviter la duplication inutile des challenge si des potes veulent faire le même programme à plusieurs au lieu d'être restreint à 1v1, on peut autoriser aussi le 1v1v1 et 1v1v1v1
+6. D'un prix à gagner, là c'est eux qui decident
+
+exemple de challenge :
+Contre toi et Pierrick, j'vous challenge à faire 10min d'abdo 1 fois/jour pendant 2 semaine et j'met en jeu une tournée à un bar
+ou
+J'te challenge, à faire 12km de course, 2 fois/ semaine pendant 1 mois, celui qui gagne remporte une bouffe dans le resto de son choix
