@@ -1,3 +1,3 @@
-rootProject.name = 'reactNativeFirebaseStartApp'
+rootProject.name = 'BoomApp'
 
 include ':app'

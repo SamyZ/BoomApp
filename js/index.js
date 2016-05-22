@@ -8,13 +8,13 @@ import Firebase from 'firebase';
 
 const firebaseRef = new Firebase('https://reactnativestartapp.firebaseio.com'); // Ready to use
 
-const reactNativeFirebaseStartApp = () => (
+const BoomApp = () => (
   <View style={mainStyles.container} >
     <Text style={mainStyles.welcome}>
       Welcome to React Native!
     </Text>
     <Text style={mainStyles.instructions}>
-      To get started edit js/index.js
+      To get started edit js/index.js LOLZ
     </Text>
     <Text style={mainStyles.instructions}>
       Shake or press menu button for dev menu
@@ -22,4 +22,4 @@ const reactNativeFirebaseStartApp = () => (
   </View>
 );
 
-export default reactNativeFirebaseStartApp;
+export default BoomApp;
