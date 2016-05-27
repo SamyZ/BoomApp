@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BoomApp
 
 Sport & Social App that will push your motivation up to the roof
@@ -47,3 +48,6 @@ Start your emulator (Genymotion for example)
 ```shell
 $ react-native run-android
 ```
+=======
+# ChallengeApp
+>>>>>>> SamyZ/app
