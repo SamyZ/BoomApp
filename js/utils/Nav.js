@@ -3,19 +3,24 @@ import {
    Navigator,
    DrawerLayoutAndroid,
  } from 'react-native';
+
+import NavView from '../views/nav/NavView';
 import LoginView from '../views/login/LoginView';
 import HomeView from '../views/home/HomeView';
-import NavView from '../views/nav/NavView';
+import SportView from '../views/newChallenge/SportView';
 
 class Navigation extends React.Component {
   renderScene = (route, navigator) => {
     let renderedView = ({});
     switch (route.name) {
       default:
-      case 'Login':
+      case 'login':
         return <LoginView navigator={navigator} />;
-      case 'Home':
+      case 'home':
         renderedView = <HomeView navigator={navigator} />;
+        break;
+      case 'newChallenge':
+        renderedView = <SportView navigator={navigator} />;
         break;
     }
     return (
@@ -32,7 +37,7 @@ class Navigation extends React.Component {
   render() {
     return (
       <Navigator
-        initialRoute={{ name: 'Home', index: 0 }}
+        initialRoute={{ name: 'home', index: 0 }}
         renderScene={this.renderScene}
         configureScene={() => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })}
       />
