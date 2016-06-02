@@ -25,7 +25,7 @@ class LoginView extends React.Component {
 
   signIn = () => {
     Auth.authUser(this.state.email, this.state.password)
-      .then(() => navigate(this.props.navigator, 'Home'))
+      .then(() => navigate(this.props.navigator, 'home'))
       .catch(() => {}); // Display an error
   }
 
