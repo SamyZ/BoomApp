@@ -1,12 +1,9 @@
 import Firebase from 'firebase';
-import {
-  AsyncStorage,
-} from 'react-native';
 
 const firebaseRef = new Firebase('https://appboom.firebaseio.com');
 
 export function createUser(email, password) {
-  return firebaseRef.createUser({ email, password }, (error, userData) => {
+  return firebaseRef.createUser({ email, password }, (error) => {
     if (error) {
       switch (error.code) {
         case 'EMAIL_TAKEN':
@@ -14,6 +11,9 @@ export function createUser(email, password) {
           break;
         case 'INVALID_EMAIL':
           alert('Your email seems to be invalid.');
+          break;
+        case 'INVALID_PASSWORD':
+          alert('Your password seems to be invalid.');
           break;
         default:
           alert('Something terribly wrong happened, we were unable to create your account.');
@@ -26,12 +26,11 @@ export function createUser(email, password) {
 }
 
 export function authUser(email, password) {
-  return firebaseRef.authWithPassword({ email, password }, (error, userData) => {
+  return firebaseRef.authWithPassword({ email, password }, (error) => {
     if (error) {
       alert('Login Failed. Please try again');
     } else {
       alert('Login Successful');
-      AsyncStorage.setItem('userData', JSON.stringify(userData));
     }
   });
 }

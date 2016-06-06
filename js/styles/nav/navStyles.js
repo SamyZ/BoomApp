@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import mainStyles from '../mainStyles';
+import mainStyles from '../main/mainStyles';
 
 const NavStyles = StyleSheet.create({
   mainContainer: {
@@ -13,7 +13,7 @@ const NavStyles = StyleSheet.create({
   },
   titleFont: {
     fontSize: 34,
-    color: mainStyles.themeColors.main,
+    color: mainStyles.themeColors.primary,
     fontWeight: 'bold',
     marginTop: 10,
     marginBottom: 20,
