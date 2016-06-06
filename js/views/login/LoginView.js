@@ -5,13 +5,13 @@ import {
   View,
   TouchableHighlight,
 } from 'react-native';
-import mainStyles from '../../styles/mainStyles';
+import mainStyles from '../../styles/main/mainStyles';
 import loginStyles from '../../styles/login/loginStyles';
-import * as Auth from '../../utils/Auth';
-import { navigate } from '../../utils/Nav';
+import { authUser, createUser } from '../../utils/Auth';
 
 const propTypes = {
-  navigator: React.PropTypes.object,
+  onSignIn: React.PropTypes.func,
+  onSignUp: React.PropTypes.func,
 };
 
 class LoginView extends React.Component {
@@ -23,14 +23,16 @@ class LoginView extends React.Component {
     };
   }
 
-  signIn = () => {
-    Auth.authUser(this.state.email, this.state.password)
-      .then(() => navigate(this.props.navigator, 'home'))
+  signIn = (email, password) => {
+    authUser(email, password)
+      .then((userData) => this.props.onSignIn(email, password, userData))
       .catch(() => {}); // Display an error
   }
 
-  signUp = () => {
-    Auth.createUser(this.state.email, this.state.password);
+  signUp = (email, password) => {
+    createUser(email, password)
+      .then((userData) => this.props.onSignUp(email, password, userData))
+      .catch(() => {}); // Display an error
   }
 
   render() {
@@ -46,10 +48,10 @@ class LoginView extends React.Component {
             <TextInput
               style={loginStyles.inputFont}
               placeholder="Username"
-              placeholderTextColor={mainStyles.themeColors.main}
+              placeholderTextColor={mainStyles.themeColors.primary}
               value={this.state.email}
               onChangeText={(email) => this.setState({ email })}
-              underlineColorAndroid={mainStyles.themeColors.main}
+              underlineColorAndroid={mainStyles.themeColors.primary}
             />
           </View>
           <View style={loginStyles.inputContainer}>
@@ -57,20 +59,26 @@ class LoginView extends React.Component {
               password
               style={loginStyles.inputFont}
               placeholder="Password"
-              placeholderTextColor={mainStyles.themeColors.main}
+              placeholderTextColor={mainStyles.themeColors.primary}
               value={this.state.password}
               onChangeText={(password) => this.setState({ password })}
-              underlineColorAndroid={mainStyles.themeColors.main}
+              underlineColorAndroid={mainStyles.themeColors.primary}
             />
           </View>
           <View style={loginStyles.forgotContainer}>
             <Text style={loginStyles.passwordFont}>Forgot Password</Text>
           </View>
         </View>
-        <TouchableHighlight style={loginStyles.signinContainer} onPress={this.signIn}>
+        <TouchableHighlight
+          style={loginStyles.signinContainer}
+          onPress={() => this.signIn(this.state.email, this.state.password)}
+        >
           <Text style={loginStyles.signinFont}>Sign In</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={loginStyles.signupContainer} onPress={this.signUp}>
+        <TouchableHighlight
+          style={loginStyles.signupContainer}
+          onPress={() => this.signUp(this.state.email, this.state.password)}
+        >
           <Text style={loginStyles.signupFont}>
             Don't have an account?
             <Text style={loginStyles.boldFont}>

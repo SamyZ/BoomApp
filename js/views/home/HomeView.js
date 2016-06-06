@@ -3,7 +3,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import mainStyles from '../../styles/mainStyles';
+import mainStyles from '../../styles/main/mainStyles';
 import loginStyles from '../../styles/login/loginStyles';
 
 class HomeView extends React.Component {

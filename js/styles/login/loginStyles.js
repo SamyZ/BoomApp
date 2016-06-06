@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import mainStyles from '../mainStyles';
+import mainStyles from '../main/mainStyles';
 
 const loginStyles = StyleSheet.create({
   mainContainer: {
@@ -25,7 +25,7 @@ const loginStyles = StyleSheet.create({
     padding: 15,
   },
   signinContainer: {
-    backgroundColor: mainStyles.themeColors.main,
+    backgroundColor: mainStyles.themeColors.primary,
     padding: 20,
     alignItems: 'center',
   },
@@ -37,12 +37,12 @@ const loginStyles = StyleSheet.create({
   welcomeFont: {
     fontSize: 25,
     textAlign: 'center',
-    color: mainStyles.themeColors.main,
+    color: mainStyles.themeColors.primary,
   },
   inputFont: {
     marginLeft: 40,
     marginRight: 40,
-    color: mainStyles.themeColors.main,
+    color: mainStyles.themeColors.primary,
   },
   passwordFont: {
     color: '#FFF',

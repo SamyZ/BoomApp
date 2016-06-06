@@ -5,9 +5,9 @@ import {
  } from 'react-native';
 
 import NavView from '../views/nav/NavView';
-import LoginView from '../views/login/LoginView';
 import HomeView from '../views/home/HomeView';
-import SportView from '../views/newChallenge/SportView';
+import LoginContainer from '../containers/LoginContainer';
+import NewChallengeContainer from '../containers/NewChallengeContainer';
 
 class Navigation extends React.Component {
   renderScene = (route, navigator) => {
@@ -15,12 +15,12 @@ class Navigation extends React.Component {
     switch (route.name) {
       default:
       case 'login':
-        return <LoginView navigator={navigator} />;
+        return <LoginContainer navigator={navigator} />;
       case 'home':
         renderedView = <HomeView navigator={navigator} />;
         break;
       case 'newChallenge':
-        renderedView = <SportView navigator={navigator} />;
+        renderedView = <NewChallengeContainer navigator={navigator} />;
         break;
     }
     return (
