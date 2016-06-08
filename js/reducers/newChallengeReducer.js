@@ -11,9 +11,9 @@ const initialState = {
 export default function newChallenge(state = initialState, action) {
   switch (action.type) {
     case SAVE_CHALLENGE: {
-      return {
-        id: 0,
-      };
+      return Object.assign({}, state, {
+        challenge: Object.assign({}, state.challenge, action.challenge),
+      });
     }
     case CREATE_CHALLENGE:
       return {

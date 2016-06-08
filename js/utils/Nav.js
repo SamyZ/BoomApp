@@ -37,7 +37,7 @@ class Navigation extends React.Component {
   render() {
     return (
       <Navigator
-        initialRoute={{ name: 'home', index: 0 }}
+        initialRoute={{ name: 'newChallenge', index: 0 }}
         renderScene={this.renderScene}
         configureScene={() => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })}
       />

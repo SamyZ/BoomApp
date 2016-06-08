@@ -11,6 +11,6 @@
     "react"
   ],
   "rules": {
-    "max-len": ["error", 120, 4, {"ignoreUrls": true}]
+    "max-len": ["error", 130, 4, {"ignoreUrls": true}]
   }
 }

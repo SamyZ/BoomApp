@@ -45,14 +45,14 @@ const loginStyles = StyleSheet.create({
     color: mainStyles.themeColors.primary,
   },
   passwordFont: {
-    color: '#FFF',
+    color: mainStyles.themeColors.choice,
     marginRight: 30,
   },
   signinFont: {
     fontSize: 20,
   },
   signupFont: {
-    color: '#FFF',
+    color: mainStyles.themeColors.choice,
   },
   boldFont: {
     fontWeight: 'bold',

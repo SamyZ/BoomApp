@@ -4,6 +4,9 @@ import { Navigator } from 'react-native';
 import { onSave, onCreate } from '../actions/challengesActions';
 import SportView from '../views/newChallenge/SportView';
 import ExerciseView from '../views/newChallenge/ExerciseView';
+import FriendsView from '../views/newChallenge/FriendsView';
+import PrizeView from '../views/newChallenge/PrizeView';
+import SummaryView from '../views/newChallenge/SummaryView';
 
 const propTypes = {
   navigator: React.PropTypes.object,
@@ -31,9 +34,24 @@ class NewChallengeContainer extends React.Component {
     switch (route.name) {
       default:
       case 'sport':
-        return <SportView navigator={challengeNavigator} />;
+        return (
+          <SportView
+            challengeNavigator={challengeNavigator}
+            mainNavigator={this.props.navigator}
+            onSave={(challenge) => this.onSave(challenge)}
+          />);
       case 'exercise':
-        return <ExerciseView navigator={challengeNavigator} />;
+        return (
+          <ExerciseView
+            challengeNavigator={challengeNavigator}
+            onSave={(challenge) => this.onSave(challenge)}
+          />);
+      case 'friends':
+        return <FriendsView challengeNavigator={challengeNavigator} />;
+      case 'prize':
+        return <PrizeView challengeNavigator={challengeNavigator} />;
+      case 'summary':
+        return <SummaryView challengeNavigator={challengeNavigator} mainNavigator={this.props.navigator} />;
     }
   }
 
@@ -41,11 +59,7 @@ class NewChallengeContainer extends React.Component {
     <Navigator
       initialRoute={{ name: 'sport', index: 0 }}
       renderScene={this.renderScene}
-      configureScene={(route, routeStack) => {
-        console.log(route);
-        console.log(routeStack);
-        return { ...Navigator.SceneConfigs.PushFromRight, gestures: {} };
-      }}
+      configureScene={(route, routeStack) => ({...Navigator.SceneConfigs.PushFromRight, gestures: {} })}
     />
   );
 }

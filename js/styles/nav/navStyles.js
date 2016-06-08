@@ -20,7 +20,7 @@ const NavStyles = StyleSheet.create({
   },
   itemFont: {
     fontSize: 14,
-    color: mainStyles.themeColors.white,
+    color: mainStyles.themeColors.choice,
     marginBottom: 8,
   },
 });

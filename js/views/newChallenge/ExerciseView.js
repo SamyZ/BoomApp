@@ -2,33 +2,44 @@ import React from 'react';
 import {
   Text,
   View,
-  TouchableHighlight,
 } from 'react-native';
-import mainStyles from '../../styles/main/mainStyles';
-import loginStyles from '../../styles/login/loginStyles';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { navigate } from '../../utils/Nav';
+import newChallengeStyles from '../../styles/newChallenge/newChallengeStyles';
+import NavBarView from './NavBarView';
+import ItemSelectView from './ItemSelectView';
 
-class ExerciseView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const sportItemStyle = {
+  marginTop: 10,
+  labelFontSize: 38,
+  iconFontSize: 45,
+};
 
-  render() {
-    return (
-      <View style={loginStyles.mainContainer}>
-        <View style={loginStyles.welcomeContainer}>
-          <Text style={loginStyles.welcomeFont}>
-            Exercise
-          </Text>
-          <Icon name="rocket" size={30} color={mainStyles.themeColors.primary} />
-          <TouchableHighlight onPress={() => this.props.navigator.pop()}>
-            <Text style={loginStyles.welcomeFont}>Go to sport</Text>
-          </TouchableHighlight>
-        </View>
+const propTypes = {
+  challengeNavigator: React.PropTypes.object,
+  onSave: React.PropTypes.func,
+};
+
+const ExcerciseView = (props) => (
+  <View style={newChallengeStyles.mainContainer}>
+    <NavBarView
+      backward="Sport"
+      forward="Friends"
+      navigateBackward={() => navigate(props.challengeNavigator, 'sport')}
+      navigateForward={() => navigate(props.challengeNavigator, 'friends')}
+      progress={0.5}
+    />
+    <View style={newChallengeStyles.contentContainer}>
+      <Text style={newChallengeStyles.titleFont} onPress={() => props.onSave({ duration: '15 min' })}>Exercise</Text>
+      <View style={newChallengeStyles.itemsContainer} >
+        <ItemSelectView label="15 min" style={sportItemStyle} />
+        <ItemSelectView label="Every Day" style={sportItemStyle} />
+        <ItemSelectView label="1 month" style={sportItemStyle} />
       </View>
-    );
-  }
-}
+      <Text style={newChallengeStyles.titleFont}>Program</Text>
+    </View>
+  </View>
+);
 
-export default ExerciseView;
+ExcerciseView.propTypes = propTypes;
+
+export default ExcerciseView;

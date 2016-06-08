@@ -30,7 +30,7 @@ export function authUser(email, password) {
     if (error) {
       alert('Login Failed. Please try again');
     } else {
-      alert('Login Successful');
+      // alert('Login Successful');
     }
   });
 }
