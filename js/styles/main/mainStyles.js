@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 const themeColors = {
-  primary: '#59fdb8',
+  primary: '#53dc99',
+  progressLine: '#74feb0',
   secondary: '#050505',
-  white: '#FFF',
+  choice: '#FFF',
 };
 
 const mainStyles = StyleSheet.create({
@@ -14,7 +15,7 @@ const mainStyles = StyleSheet.create({
     backgroundColor: themeColors.secondary,
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
     margin: 10,
   },

@@ -9,23 +9,24 @@ import NavBarView from './NavBarView';
 
 const propTypes = {
   challengeNavigator: React.PropTypes.object,
+  mainNavigator: React.PropTypes.object,
 };
 
-const FriendsView = (props) => (
+const SummaryView = (props) => (
   <View style={newChallengeStyles.mainContainer}>
     <NavBarView
-      backward="Excercise"
-      forward="Prize"
-      navigateBackward={() => navigate(props.challengeNavigator, 'exercise')}
-      navigateForward={() => navigate(props.challengeNavigator, 'prize')}
+      backward="Prize"
+      forward="Create challenge"
+      navigateBackward={() => navigate(props.challengeNavigator, 'prize')}
+      navigateForward={() => navigate(props.mainNavigator, 'home')}
       progress={0.75}
     />
     <View style={newChallengeStyles.contentContainer}>
-      <Text style={newChallengeStyles.titleFont}>Friends</Text>
+      <Text style={newChallengeStyles.titleFont}>Summary</Text>
     </View>
   </View>
 );
 
-FriendsView.propTypes = propTypes;
+SummaryView.propTypes = propTypes;
 
-export default FriendsView;
+export default SummaryView;
