@@ -1,25 +1,19 @@
 import React from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
-import mainStyles from './styles/main';
-import Firebase from 'firebase';
+import { applyMiddleware, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import reducers from './reducers';
+import Navigation from './utils/Nav';
 
-const firebaseRef = new Firebase('https://reactnativestartapp.firebaseio.com'); // Ready to use
+const logger = createLogger();
+const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
+const store = createStoreWithMiddleware(reducers);
 
 const BoomApp = () => (
-  <View style={mainStyles.container} >
-    <Text style={mainStyles.welcome}>
-      Welcome to React Native!
-    </Text>
-    <Text style={mainStyles.instructions}>
-      To get started edit js/index.js LOLZ
-    </Text>
-    <Text style={mainStyles.instructions}>
-      Shake or press menu button for dev menu
-    </Text>
-  </View>
+  <Provider store={store}>
+    <Navigation />
+  </Provider>
 );
 
 export default BoomApp;
