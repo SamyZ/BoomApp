@@ -9,22 +9,31 @@ import NavBarView from './NavBarView';
 
 const propTypes = {
   challengeNavigator: React.PropTypes.object,
+  onSave: React.PropTypes.func,
 };
 
-const PrizeView = (props) => (
-  <View style={newChallengeStyles.mainContainer}>
-    <NavBarView
-      backward="Friends"
-      forward="Summary"
-      navigateBackward={() => navigate(props.challengeNavigator, 'prize')}
-      navigateForward={() => navigate(props.challengeNavigator, 'summary')}
-      progress={0.75}
-    />
-    <View style={newChallengeStyles.contentContainer}>
-      <Text style={newChallengeStyles.titleFont}>Prize</Text>
+class PrizeView extends React.Component {
+  onSave = () => this.props.onSave({ duration: '15 min' })
+
+  navigateBackward = () => navigate(this.challengeNavigator, 'friends');
+
+  navigateForward = () => navigate(this.challengeNavigator, 'summary');
+
+  render = () => (
+    <View style={newChallengeStyles.mainContainer}>
+      <NavBarView
+        backward="Friends"
+        forward="Summary"
+        navigateBackward={this.navigateBackward}
+        navigateForward={this.navigateForward}
+        progress={0.8}
+      />
+      <View style={newChallengeStyles.contentContainer}>
+        <Text style={newChallengeStyles.titleFont}>Prize</Text>
+      </View>
     </View>
-  </View>
-);
+  );
+}
 
 PrizeView.propTypes = propTypes;
 

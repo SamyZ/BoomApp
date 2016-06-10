@@ -26,31 +26,39 @@ const propTypes = {
   onSave: React.PropTypes.func,
 };
 
-const SportView = (props) => (
-  <View style={newChallengeStyles.mainContainer}>
-    <NavBarView
-      backward="Cancel"
-      forward="Exercise"
-      navigateBackward={() => navigate(props.mainNavigator, 'home')}
-      navigateForward={() => navigate(props.challengeNavigator, 'exercise')}
-      progress={0.25}
-    />
-    <View style={newChallengeStyles.contentContainer}>
-      <Text style={newChallengeStyles.titleFont} onPress={() => props.onSave({ fitness: 'Chest program' })}>Sport</Text>
-      <View style={newChallengeStyles.itemsContainer} >
-        <ItemSelectView label="Fitness" style={sportItemStyle} />
-        <ItemSelectView label="Cardio" style={sportItemStyle} />
-        <ItemSelectView label="Crossfit" style={sportItemStyle} />
-      </View>
-      <Text style={newChallengeStyles.titleFont}>Challenge</Text>
-      <View style={newChallengeStyles.itemsContainer} >
-        <ItemSelectView label="Chest Program" style={challengeItemStyle} />
-        <ItemSelectView label="Back" style={challengeItemStyle} />
-        <ItemSelectView label="Abs Program" style={challengeItemStyle} />
+class SportView extends React.Component {
+  onSave = () => this.props.onSave({ fitness: 'Chest program' })
+
+  navigateBackward = () => navigate(this.mainNavigator, 'home');
+
+  navigateForward = () => navigate(this.challengeNavigator, 'exercise');
+
+  render = () => (
+    <View style={newChallengeStyles.mainContainer}>
+      <NavBarView
+        backward="Cancel"
+        forward="Exercise"
+        navigateBackward={this.navigateBackward}
+        navigateForward={this.navigateForward}
+        progress={0.2}
+      />
+      <View style={newChallengeStyles.contentContainer}>
+        <Text style={newChallengeStyles.titleFont} onPress={this.onSave}>Sport</Text>
+        <View style={newChallengeStyles.itemsContainer} >
+          <ItemSelectView label="Fitness" style={sportItemStyle} />
+          <ItemSelectView label="Cardio" style={sportItemStyle} />
+          <ItemSelectView label="Crossfit" style={sportItemStyle} />
+        </View>
+        <Text style={newChallengeStyles.titleFont}>Challenge</Text>
+        <View style={newChallengeStyles.itemsContainer} >
+          <ItemSelectView label="Chest Program" style={challengeItemStyle} />
+          <ItemSelectView label="Back" style={challengeItemStyle} />
+          <ItemSelectView label="Abs Program" style={challengeItemStyle} />
+        </View>
       </View>
     </View>
-  </View>
-);
+  );
+}
 
 SportView.propTypes = propTypes;
 
