@@ -30,6 +30,8 @@ class NewChallengeContainer extends React.Component {
   onSave = (challenge, challengeNavigator) => this.props.onSave(challenge, challengeNavigator);
   onCreate = (challenge) => this.props.onCreate(challenge, this.props.navigator);
 
+  configureScene = (/* route, routeStack */) => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })
+
   renderScene = (route, challengeNavigator) => {
     switch (route.name) {
       default:
@@ -38,20 +40,30 @@ class NewChallengeContainer extends React.Component {
           <SportView
             challengeNavigator={challengeNavigator}
             mainNavigator={this.props.navigator}
-            onSave={(challenge) => this.onSave(challenge)}
+            onSave={this.onSave}
           />);
       case 'exercise':
         return (
           <ExerciseView
             challengeNavigator={challengeNavigator}
-            onSave={(challenge) => this.onSave(challenge)}
+            onSave={this.onSave}
           />);
       case 'friends':
-        return <FriendsView challengeNavigator={challengeNavigator} />;
+        return (
+          <FriendsView
+            challengeNavigator={challengeNavigator}
+          />);
       case 'prize':
-        return <PrizeView challengeNavigator={challengeNavigator} />;
+        return (
+          <PrizeView
+            challengeNavigator={challengeNavigator}
+          />);
       case 'summary':
-        return <SummaryView challengeNavigator={challengeNavigator} mainNavigator={this.props.navigator} />;
+        return (
+          <SummaryView
+            challengeNavigator={challengeNavigator}
+            mainNavigator={this.props.navigator}
+          />);
     }
   }
 
@@ -59,7 +71,7 @@ class NewChallengeContainer extends React.Component {
     <Navigator
       initialRoute={{ name: 'sport', index: 0 }}
       renderScene={this.renderScene}
-      configureScene={(route, routeStack) => ({...Navigator.SceneConfigs.PushFromRight, gestures: {} })}
+      configureScene={this.configureScene}
     />
   );
 }

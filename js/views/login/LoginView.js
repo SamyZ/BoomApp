@@ -23,15 +23,19 @@ class LoginView extends React.Component {
     };
   }
 
-  signIn = (email, password) => {
-    authUser(email, password)
-      .then((userData) => this.props.onSignIn(email, password, userData))
+  onChangeField = (text) => {
+    this.setState({ [text]: text });
+  }
+
+  signIn = () => {
+    authUser(this.state.email, this.state.password)
+      .then((userData) => this.props.onSignIn(this.state.email, this.state.password, userData))
       .catch(() => {}); // Display an error
   }
 
-  signUp = (email, password) => {
-    createUser(email, password)
-      .then((userData) => this.props.onSignUp(email, password, userData))
+  signUp = () => {
+    createUser(this.state.email, this.state.password)
+      .then((userData) => this.props.onSignUp(this.state.email, this.state.password, userData))
       .catch(() => {}); // Display an error
   }
 
@@ -50,7 +54,7 @@ class LoginView extends React.Component {
               placeholder="Username"
               placeholderTextColor={mainStyles.themeColors.primary}
               value={this.state.email}
-              onChangeText={(email) => this.setState({ email })}
+              onChangeText={this.onChangeField}
               underlineColorAndroid={mainStyles.themeColors.primary}
             />
           </View>
@@ -61,7 +65,7 @@ class LoginView extends React.Component {
               placeholder="Password"
               placeholderTextColor={mainStyles.themeColors.primary}
               value={this.state.password}
-              onChangeText={(password) => this.setState({ password })}
+              onChangeText={this.onChangeField}
               underlineColorAndroid={mainStyles.themeColors.primary}
             />
           </View>
@@ -71,13 +75,13 @@ class LoginView extends React.Component {
         </View>
         <TouchableHighlight
           style={loginStyles.signinContainer}
-          onPress={() => this.signIn(this.state.email, this.state.password)}
+          onPress={this.signIn}
         >
           <Text style={loginStyles.signinFont}>Sign In</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={loginStyles.signupContainer}
-          onPress={() => this.signUp(this.state.email, this.state.password)}
+          onPress={this.signUp}
         >
           <Text style={loginStyles.signupFont}>
             Don't have an account?

@@ -19,12 +19,12 @@ const propTypes = {
 const NavBarView = (props) => (
   <View style={NavBarStyles.mainContainer}>
     <View style={NavBarStyles.buttonsContainer}>
-      <TouchableOpacity style={NavBarStyles.leftButtonContainer} onPress={() => props.navigateBackward()}>
+      <TouchableOpacity style={NavBarStyles.leftButtonContainer} onPress={props.navigateBackward}>
         <Icon name="md-arrow-back" color={mainStyles.themeColors.choice} style={NavBarStyles.navBarFont}>
           <Text style={NavBarStyles.navBarFont}>{`  ${props.backward}`}</Text>
         </Icon>
       </TouchableOpacity>
-      <TouchableOpacity style={NavBarStyles.rightButtonContainer} onPress={() => props.navigateForward()}>
+      <TouchableOpacity style={NavBarStyles.rightButtonContainer} onPress={props.navigateForward}>
         <Text style={NavBarStyles.navBarFont}>
           {`${props.forward}  `}
           <Icon name="md-arrow-forward" color={mainStyles.themeColors.choice} style={NavBarStyles.navBarFont} />
