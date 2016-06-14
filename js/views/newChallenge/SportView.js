@@ -29,9 +29,9 @@ const propTypes = {
 class SportView extends React.Component {
   onSave = () => this.props.onSave({ fitness: 'Chest program' })
 
-  navigateBackward = () => navigate(this.mainNavigator, 'home');
+  navigateBackward = () => navigate(this.props.mainNavigator, 'home');
 
-  navigateForward = () => navigate(this.challengeNavigator, 'exercise');
+  navigateForward = () => navigate(this.props.challengeNavigator, 'exercise');
 
   render = () => (
     <View style={newChallengeStyles.mainContainer}>

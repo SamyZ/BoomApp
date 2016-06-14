@@ -22,9 +22,9 @@ const propTypes = {
 class ExcerciseView extends React.Component {
   onSave = () => this.props.onSave({ duration: '15 min' })
 
-  navigateBackward = () => navigate(this.challengeNavigator, 'sport');
+  navigateBackward = () => navigate(this.props.challengeNavigator, 'sport');
 
-  navigateForward = () => navigate(this.challengeNavigator, 'friends');
+  navigateForward = () => navigate(this.props.challengeNavigator, 'friends');
 
   render = () => (
     <View style={newChallengeStyles.mainContainer}>

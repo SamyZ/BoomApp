@@ -15,9 +15,9 @@ const propTypes = {
 class FriendsView extends React.Component {
   onSave = () => this.props.onSave({ duration: '15 min' })
 
-  navigateBackward = () => navigate(this.challengeNavigator, 'exercise');
+  navigateBackward = () => navigate(this.props.challengeNavigator, 'exercise');
 
-  navigateForward = () => navigate(this.challengeNavigator, 'prize');
+  navigateForward = () => navigate(this.props.challengeNavigator, 'prize');
 
   render = () => (
     <View style={newChallengeStyles.mainContainer}>

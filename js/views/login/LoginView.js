@@ -23,8 +23,12 @@ class LoginView extends React.Component {
     };
   }
 
-  onChangeField = (text) => {
-    this.setState({ [text]: text });
+  onChangeEmail = (email) => {
+    this.setState({ email });
+  }
+
+  onChangePassword = (password) => {
+    this.setState({ password });
   }
 
   signIn = () => {
@@ -54,7 +58,7 @@ class LoginView extends React.Component {
               placeholder="Username"
               placeholderTextColor={mainStyles.themeColors.primary}
               value={this.state.email}
-              onChangeText={this.onChangeField}
+              onChangeText={this.onChangeEmail}
               underlineColorAndroid={mainStyles.themeColors.primary}
             />
           </View>
@@ -65,7 +69,7 @@ class LoginView extends React.Component {
               placeholder="Password"
               placeholderTextColor={mainStyles.themeColors.primary}
               value={this.state.password}
-              onChangeText={this.onChangeField}
+              onChangeText={this.onChangePassword}
               underlineColorAndroid={mainStyles.themeColors.primary}
             />
           </View>

@@ -12,8 +12,6 @@ import NewChallengeContainer from '../containers/NewChallengeContainer';
 class Navigation extends React.Component {
   configureScene = (/* route, routeStack */) => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })
 
-  renderNavigationView = () => <NavView navigator={navigator} />
-
   renderScene = (route, navigator) => {
     let renderedView = ({});
     switch (route.name) {
@@ -31,7 +29,7 @@ class Navigation extends React.Component {
       <DrawerLayoutAndroid
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={this.renderNavigationView}
+        renderNavigationView={() => <NavView navigator={navigator} />}
       >
         {renderedView}
       </DrawerLayoutAndroid>

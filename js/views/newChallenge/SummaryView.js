@@ -16,9 +16,9 @@ const propTypes = {
 class SummaryView extends React.Component {
   onSave = () => this.props.onSave({ duration: '15 min' })
 
-  navigateBackward = () => navigate(this.challengeNavigator, 'prize');
+  navigateBackward = () => navigate(this.props.challengeNavigator, 'prize');
 
-  navigateForward = () => navigate(this.mainNavigator, 'home');
+  navigateForward = () => navigate(this.props.mainNavigator, 'home');
 
   render = () => (
     <View style={newChallengeStyles.mainContainer}>

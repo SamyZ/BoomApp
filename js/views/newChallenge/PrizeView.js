@@ -15,9 +15,9 @@ const propTypes = {
 class PrizeView extends React.Component {
   onSave = () => this.props.onSave({ duration: '15 min' })
 
-  navigateBackward = () => navigate(this.challengeNavigator, 'friends');
+  navigateBackward = () => navigate(this.props.challengeNavigator, 'friends');
 
-  navigateForward = () => navigate(this.challengeNavigator, 'summary');
+  navigateForward = () => navigate(this.props.challengeNavigator, 'summary');
 
   render = () => (
     <View style={newChallengeStyles.mainContainer}>
