@@ -1,10 +1,16 @@
 import { StyleSheet } from 'react-native';
 import mainStyles from '../main/mainStyles';
 
+const height = 120;
+
 const navBarStyles = StyleSheet.create({
   mainContainer: {
-    flex: 0.2,
     backgroundColor: mainStyles.themeColors.primary,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height,
   },
   buttonsContainer: {
     flex: 1,
@@ -40,5 +46,6 @@ const navBarStyles = StyleSheet.create({
   },
 });
 
+navBarStyles.height = height;
 
 export default navBarStyles;
