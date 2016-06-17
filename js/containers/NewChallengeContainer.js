@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigator } from 'react-native';
-import { navigate } from '../utils/Nav';
 import { onSave, onCreate } from '../actions/challengesActions';
 import SportView from '../views/newChallenge/SportView';
 import ExerciseView from '../views/newChallenge/ExerciseView';
@@ -32,7 +31,6 @@ function mapDispatchToProps(dispatch) {
   return {
     onSave: (challenge, navigator) => dispatch(onSave(challenge, navigator)),
     onCreate: (challenge, navigator) => dispatch(onCreate(challenge, navigator)),
-    dispatch,
   };
 }
 
@@ -46,13 +44,13 @@ class NewChallengeContainer extends React.Component {
     if (leaveChallengeCreation) {
       this.props.navigator.pop();
     } else {
-      this.challengeNavigator.pop();
+      this.challengeNavigator.jumpBack();
     }
   }
 
   navigateForward = (leaveChallengeCreation) => {
     if (leaveChallengeCreation) {
-      navigate(this.props.navigator, 'home');
+      this.props.navigator.pop();
     } else {
       this.challengeNavigator.jumpForward();
     }

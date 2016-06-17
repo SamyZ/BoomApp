@@ -9,8 +9,14 @@ import LoginContainer from '../containers/LoginContainer';
 import NewChallengeContainer from '../containers/NewChallengeContainer';
 
 export function navigate(navigator, routeName) {
-  navigator.push({ name: routeName });
+  navigator.push({ name: routeName }); // Memory leak :( - Will probably have to move to another navigation module
 }
+
+const routeStack = [
+  { name: 'login' },
+  { name: 'home' },
+  { name: 'newChallenge' },
+];
 
 class Navigation extends React.Component {
   configureScene = () => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })
@@ -23,15 +29,14 @@ class Navigation extends React.Component {
   renderScene = (route, navigator) => {
     let renderedView = ({});
     switch (route.name) {
-      default:
       case 'login':
         return <LoginContainer navigator={navigator} />;
+      default:
       case 'home':
         renderedView = <HomeView navigator={navigator} />;
         break;
       case 'newChallenge':
         renderedView = <NewChallengeContainer navigator={navigator} />;
-        break;
     }
     return (
       <DrawerLayoutAndroid
@@ -47,7 +52,7 @@ class Navigation extends React.Component {
 
   render = () => (
     <Navigator
-      initialRoute={{ name: 'home' }}
+      initialRoute={routeStack[1]}
       renderScene={this.renderScene}
       configureScene={this.configureScene}
     />

@@ -23,6 +23,10 @@ const propTypes = {
 };
 
 class SportView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   onSave = () => this.props.onSave({ fitness: 'Chest program' })
   render = () => (
     <View style={newChallengeStyles.mainContainer}>
