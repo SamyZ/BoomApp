@@ -1,15 +1,17 @@
 import { StyleSheet } from 'react-native';
 import mainStyles from '../main/mainStyles';
+import navBarStyles from './navBarStyles';
 
 const newChallengeStyles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: mainStyles.themeColors.secondary,
+    marginTop: navBarStyles.height,
   },
   contentContainer: {
-    flex: 0.8,
+    flex: 1,
     backgroundColor: mainStyles.themeColors.secondary,
-    marginTop: 60,
+    marginTop: 40,
     marginLeft: 40,
     marginRight: 40,
   },

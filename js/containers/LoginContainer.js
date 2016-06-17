@@ -17,7 +17,6 @@ function mapDispatchToProps(dispatch) {
   return {
     onSignIn: (email, password, userData, navigator) => dispatch(onSignIn(email, password, userData, navigator)),
     onSignUp: (email, password, userData, navigator) => dispatch(onSignUp(email, password, userData, navigator)),
-    dispatch,
   };
 }
 

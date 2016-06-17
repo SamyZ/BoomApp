@@ -3,54 +3,60 @@ import {
    Navigator,
    DrawerLayoutAndroid,
  } from 'react-native';
-
 import NavView from '../views/nav/NavView';
 import HomeView from '../views/home/HomeView';
 import LoginContainer from '../containers/LoginContainer';
 import NewChallengeContainer from '../containers/NewChallengeContainer';
 
-class Navigation extends React.Component {
-  configureScene = (/* route, routeStack */) => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })
+export function navigate(navigator, routeName) {
+  navigator.push({ name: routeName }); // Memory leak :( - Will probably have to move to another navigation module
+}
 
-  renderNavigationView = () => <NavView navigator={navigator} />
+const routeStack = [
+  { name: 'login' },
+  { name: 'home' },
+  { name: 'newChallenge' },
+];
+
+class Navigation extends React.Component {
+  configureScene = () => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })
+
+  navigateToRoute = (navigator, routeName) => {
+    navigate(navigator, routeName);
+    this.drawer.closeDrawer();
+  }
 
   renderScene = (route, navigator) => {
     let renderedView = ({});
     switch (route.name) {
-      default:
       case 'login':
         return <LoginContainer navigator={navigator} />;
+      default:
       case 'home':
         renderedView = <HomeView navigator={navigator} />;
         break;
       case 'newChallenge':
         renderedView = <NewChallengeContainer navigator={navigator} />;
-        break;
     }
     return (
       <DrawerLayoutAndroid
+        ref={(drawer) => { this.drawer = drawer; }}
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={this.renderNavigationView}
+        renderNavigationView={() => <NavView navigateToRoute={(routeName) => this.navigateToRoute(navigator, routeName)} />}
       >
         {renderedView}
       </DrawerLayoutAndroid>
     );
   }
 
-  render() {
-    return (
-      <Navigator
-        initialRoute={{ name: 'newChallenge', index: 0 }}
-        renderScene={this.renderScene}
-        configureScene={this.configureScene}
-      />
-    );
-  }
+  render = () => (
+    <Navigator
+      initialRoute={routeStack[1]}
+      renderScene={this.renderScene}
+      configureScene={this.configureScene}
+    />
+  );
 }
 
 export default Navigation;
-
-export function navigate(navigator, routeName) {
-  navigator.push({ name: routeName }); // Has to match route.name
-}

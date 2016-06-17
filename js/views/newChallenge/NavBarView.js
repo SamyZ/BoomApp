@@ -5,38 +5,80 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import mainStyles from '../../styles/main/mainStyles';
-import NavBarStyles from '../../styles/newChallenge/navBarStyles';
+import navBarStyles from '../../styles/newChallenge/navBarStyles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const propTypes = {
-  backward: React.PropTypes.string,
-  forward: React.PropTypes.string,
+  routeStack: React.PropTypes.array,
   navigateBackward: React.PropTypes.func,
   navigateForward: React.PropTypes.func,
-  progress: React.PropTypes.number,
 };
 
-const NavBarView = (props) => (
-  <View style={NavBarStyles.mainContainer}>
-    <View style={NavBarStyles.buttonsContainer}>
-      <TouchableOpacity style={NavBarStyles.leftButtonContainer} onPress={props.navigateBackward}>
-        <Icon name="md-arrow-back" color={mainStyles.themeColors.choice} style={NavBarStyles.navBarFont}>
-          <Text style={NavBarStyles.navBarFont}>{`  ${props.backward}`}</Text>
-        </Icon>
-      </TouchableOpacity>
-      <TouchableOpacity style={NavBarStyles.rightButtonContainer} onPress={props.navigateForward}>
-        <Text style={NavBarStyles.navBarFont}>
-          {`${props.forward}  `}
-          <Icon name="md-arrow-forward" color={mainStyles.themeColors.choice} style={NavBarStyles.navBarFont} />
-        </Text>
-      </TouchableOpacity>
-    </View>
-    <View style={NavBarStyles.progressLineContainer} >
-      <View style={[NavBarStyles.progressLineLeftContainer, { flex: props.progress }]} />
-      <View style={[NavBarStyles.progressLineRightContainer, { flex: 1 - props.progress }]} />
-    </View>
-  </View>
-);
+class NavBarView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 0,
+      backwardLabel: 'Cancel',
+      forwardLabel: props.routeStack[1].name,
+      progress: 1 / props.routeStack.length,
+    };
+  }
+
+  navigateBackward = () => {
+    if (this.state.index === 0) {
+      this.props.navigateBackward(true); // Leave challenge creation
+    } else {
+      const index = this.state.index - 1;
+      this.setState({
+        index,
+        backwardLabel: index ? this.props.routeStack[index - 1].name : 'Cancel',
+        forwardLabel: this.props.routeStack[index + 1].name,
+        progress: this.state.progress - 1 / this.props.routeStack.length,
+      });
+      this.props.navigateBackward(false); // Stay on challenge creation
+    }
+  }
+
+  navigateForward = () => {
+    if (this.state.index + 1 === this.props.routeStack.length) {
+      this.props.navigateForward(true); // Leave challenge creation
+    } else {
+      const index = this.state.index + 1;
+      this.setState({
+        index,
+        backwardLabel: this.props.routeStack[index - 1].name,
+        forwardLabel: (index + 1 !== this.props.routeStack.length) ? this.props.routeStack[index + 1].name : 'Create challenge',
+        progress: this.state.progress + 1 / this.props.routeStack.length,
+      });
+      this.props.navigateForward(false); // Stay on challenge creation
+    }
+  }
+
+  render() {
+    return (
+      <View style={navBarStyles.mainContainer}>
+        <View style={navBarStyles.buttonsContainer}>
+          <TouchableOpacity style={navBarStyles.leftButtonContainer} onPress={this.navigateBackward}>
+            <Icon name="md-arrow-back" color={mainStyles.themeColors.choice} style={navBarStyles.navBarFont}>
+              <Text style={navBarStyles.navBarFont}>{`  ${this.state.backwardLabel}`}</Text>
+            </Icon>
+          </TouchableOpacity>
+          <TouchableOpacity style={navBarStyles.rightButtonContainer} onPress={this.navigateForward}>
+            <Text style={navBarStyles.navBarFont}>
+              {`${this.state.forwardLabel}  `}
+              <Icon name="md-arrow-forward" color={mainStyles.themeColors.choice} style={navBarStyles.navBarFont} />
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={navBarStyles.progressLineContainer} >
+          <View style={[navBarStyles.progressLineLeftContainer, { flex: this.state.progress }]} />
+          <View style={[navBarStyles.progressLineRightContainer, { flex: 1 - this.state.progress }]} />
+        </View>
+      </View>
+    );
+  }
+}
 
 NavBarView.propTypes = propTypes;
 

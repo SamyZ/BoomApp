@@ -7,12 +7,21 @@ import ExerciseView from '../views/newChallenge/ExerciseView';
 import FriendsView from '../views/newChallenge/FriendsView';
 import PrizeView from '../views/newChallenge/PrizeView';
 import SummaryView from '../views/newChallenge/SummaryView';
+import NavBarView from '../views/newChallenge/NavBarView';
 
 const propTypes = {
   navigator: React.PropTypes.object,
   onSave: React.PropTypes.func,
   onCreate: React.PropTypes.func,
 };
+
+const routeStack = [
+  { name: 'Sport', index: 0 },
+  { name: 'Exercise', index: 1 },
+  { name: 'Friends', index: 2 },
+  { name: 'Prize', index: 3 },
+  { name: 'Summary', index: 4 },
+];
 
 function mapStateToProps(state) {
   return state.newChallenge;
@@ -22,7 +31,6 @@ function mapDispatchToProps(dispatch) {
   return {
     onSave: (challenge, navigator) => dispatch(onSave(challenge, navigator)),
     onCreate: (challenge, navigator) => dispatch(onCreate(challenge, navigator)),
-    dispatch,
   };
 }
 
@@ -32,46 +40,63 @@ class NewChallengeContainer extends React.Component {
 
   configureScene = (/* route, routeStack */) => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })
 
-  renderScene = (route, challengeNavigator) => {
+  navigateBackward = (leaveChallengeCreation) => {
+    if (leaveChallengeCreation) {
+      this.props.navigator.pop();
+    } else {
+      this.challengeNavigator.jumpBack();
+    }
+  }
+
+  navigateForward = (leaveChallengeCreation) => {
+    if (leaveChallengeCreation) {
+      this.props.navigator.pop();
+    } else {
+      this.challengeNavigator.jumpForward();
+    }
+  }
+
+  renderScene = (route) => {
     switch (route.name) {
       default:
-      case 'sport':
+      case 'Sport':
         return (
           <SportView
-            challengeNavigator={challengeNavigator}
-            mainNavigator={this.props.navigator}
             onSave={this.onSave}
           />);
-      case 'exercise':
+      case 'Exercise':
         return (
           <ExerciseView
-            challengeNavigator={challengeNavigator}
             onSave={this.onSave}
           />);
-      case 'friends':
+      case 'Friends':
         return (
           <FriendsView
-            challengeNavigator={challengeNavigator}
           />);
-      case 'prize':
+      case 'Prize':
         return (
           <PrizeView
-            challengeNavigator={challengeNavigator}
           />);
-      case 'summary':
+      case 'Summary':
         return (
           <SummaryView
-            challengeNavigator={challengeNavigator}
-            mainNavigator={this.props.navigator}
           />);
     }
   }
 
   render = () => (
     <Navigator
-      initialRoute={{ name: 'sport', index: 0 }}
+      ref={(challengeNavigator) => { this.challengeNavigator = challengeNavigator; }}
+      initialRoute={routeStack[0]}
+      initialRouteStack={routeStack}
       renderScene={this.renderScene}
       configureScene={this.configureScene}
+      navigationBar={
+        <NavBarView
+          routeStack={routeStack}
+          navigateBackward={this.navigateBackward}
+          navigateForward={this.navigateForward}
+        />}
     />
   );
 }
