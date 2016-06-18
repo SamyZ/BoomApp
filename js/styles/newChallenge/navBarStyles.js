@@ -33,7 +33,7 @@ const navBarStyles = StyleSheet.create({
     marginRight: 40,
   },
   progressLineLeftContainer: {
-    borderBottomColor: mainStyles.themeColors.choice,
+    borderBottomColor: mainStyles.themeColors.textPrimary,
     borderBottomWidth: 2.5,
   },
   progressLineRightContainer: {
@@ -41,7 +41,7 @@ const navBarStyles = StyleSheet.create({
     borderBottomWidth: 2.5,
   },
   navBarFont: {
-    color: mainStyles.themeColors.choice,
+    color: mainStyles.themeColors.textPrimary,
     fontSize: 17,
   },
 });

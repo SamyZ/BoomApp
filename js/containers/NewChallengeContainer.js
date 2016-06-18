@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigator } from 'react-native';
-import { onSave, onCreate } from '../actions/challengesActions';
+import { createChallenge } from '../actions/challengesActions';
 import SportView from '../views/newChallenge/SportView';
 import ExerciseView from '../views/newChallenge/ExerciseView';
 import FriendsView from '../views/newChallenge/FriendsView';
@@ -11,8 +11,7 @@ import NavBarView from '../views/newChallenge/NavBarView';
 
 const propTypes = {
   navigator: React.PropTypes.object,
-  onSave: React.PropTypes.func,
-  onCreate: React.PropTypes.func,
+  dispatch: React.PropTypes.func,
 };
 
 const routeStack = [
@@ -23,20 +22,17 @@ const routeStack = [
   { name: 'Summary', index: 4 },
 ];
 
-function mapStateToProps(state) {
-  return state.newChallenge;
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onSave: (challenge, navigator) => dispatch(onSave(challenge, navigator)),
-    onCreate: (challenge, navigator) => dispatch(onCreate(challenge, navigator)),
-  };
-}
-
 class NewChallengeContainer extends React.Component {
-  onSave = (challenge, challengeNavigator) => this.props.onSave(challenge, challengeNavigator);
-  onCreate = (challenge) => this.props.onCreate(challenge, this.props.navigator);
+  constructor(props) {
+    super(props);
+    this.state = {
+      duration: { value: '2', unit: 'weeks' },
+      objective: {},
+      repetition: 7,
+    };
+  }
+
+  onChallengeUpdate = (challenge) => this.setState({ ...this.state, ...challenge });
 
   configureScene = (/* route, routeStack */) => ({ ...Navigator.SceneConfigs.PushFromRight, gestures: {} })
 
@@ -45,14 +41,17 @@ class NewChallengeContainer extends React.Component {
       this.props.navigator.pop();
     } else {
       this.challengeNavigator.jumpBack();
+      this.forceUpdate();
     }
   }
 
   navigateForward = (leaveChallengeCreation) => {
     if (leaveChallengeCreation) {
+      this.props.dispatch(createChallenge(this.state));
       this.props.navigator.pop();
     } else {
       this.challengeNavigator.jumpForward();
+      this.forceUpdate();
     }
   }
 
@@ -62,24 +61,28 @@ class NewChallengeContainer extends React.Component {
       case 'Sport':
         return (
           <SportView
-            onSave={this.onSave}
+            onChallengeUpdate={this.onChallengeUpdate}
           />);
       case 'Exercise':
         return (
           <ExerciseView
-            onSave={this.onSave}
+            onChallengeUpdate={this.onChallengeUpdate}
           />);
       case 'Friends':
         return (
           <FriendsView
+            onChallengeUpdate={this.onChallengeUpdate}
           />);
       case 'Prize':
         return (
           <PrizeView
+            onChallengeUpdate={this.onChallengeUpdate}
           />);
       case 'Summary':
         return (
           <SummaryView
+            challenge={this.state}
+            onSave={this.onSave}
           />);
     }
   }
@@ -96,6 +99,7 @@ class NewChallengeContainer extends React.Component {
           routeStack={routeStack}
           navigateBackward={this.navigateBackward}
           navigateForward={this.navigateForward}
+          challenge={this.state}
         />}
     />
   );
@@ -103,4 +107,4 @@ class NewChallengeContainer extends React.Component {
 
 NewChallengeContainer.propTypes = propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewChallengeContainer);
+export default connect()(NewChallengeContainer);

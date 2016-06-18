@@ -4,6 +4,9 @@ import mainStyles from '../main/mainStyles';
 const newChallengeStyles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+  },
+  touchableContainer: {
+    flex: 1,
     flexDirection: 'row',
   },
   labelContainer: {
@@ -14,10 +17,9 @@ const newChallengeStyles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   labelFont: {
-    color: mainStyles.themeColors.choice,
+    color: mainStyles.themeColors.textPrimary,
   },
   iconFont: {
-    marginTop: 4,
     fontWeight: '300',
   },
 });

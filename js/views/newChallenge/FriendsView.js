@@ -6,12 +6,10 @@ import {
 import newChallengeStyles from '../../styles/newChallenge/newChallengeStyles';
 
 const propTypes = {
-  onSave: React.PropTypes.func,
+  onChallengeUpdate: React.PropTypes.func,
 };
 
 class FriendsView extends React.Component {
-  onSave = () => this.props.onSave({ duration: '15 min' })
-
   render = () => (
     <View style={newChallengeStyles.mainContainer}>
       <View style={newChallengeStyles.contentContainer}>

@@ -12,6 +12,8 @@ const propTypes = {
   routeStack: React.PropTypes.array,
   navigateBackward: React.PropTypes.func,
   navigateForward: React.PropTypes.func,
+  disabled: React.PropTypes.bool,
+  challenge: React.PropTypes.object,
 };
 
 class NavBarView extends React.Component {
@@ -56,18 +58,33 @@ class NavBarView extends React.Component {
   }
 
   render() {
+    let forwardDisable = false;
+    switch (this.state.index) {
+      case 0:
+        forwardDisable = this.props.challenge.sport ? false : true;
+        break;
+      case 1:
+        forwardDisable = this.props.challenge.objective.type ? false : true;
+        break;
+      default:
+        break;
+    }
     return (
       <View style={navBarStyles.mainContainer}>
         <View style={navBarStyles.buttonsContainer}>
           <TouchableOpacity style={navBarStyles.leftButtonContainer} onPress={this.navigateBackward}>
-            <Icon name="md-arrow-back" color={mainStyles.themeColors.choice} style={navBarStyles.navBarFont}>
+            <Icon name="md-arrow-back" color={mainStyles.themeColors.textPrimary} style={navBarStyles.navBarFont}>
               <Text style={navBarStyles.navBarFont}>{`  ${this.state.backwardLabel}`}</Text>
             </Icon>
           </TouchableOpacity>
-          <TouchableOpacity style={navBarStyles.rightButtonContainer} onPress={this.navigateForward}>
+          <TouchableOpacity
+            style={navBarStyles.rightButtonContainer}
+            onPress={this.navigateForward}
+            disabled={forwardDisable}
+          >
             <Text style={navBarStyles.navBarFont}>
               {`${this.state.forwardLabel}  `}
-              <Icon name="md-arrow-forward" color={mainStyles.themeColors.choice} style={navBarStyles.navBarFont} />
+              <Icon name="md-arrow-forward" color={mainStyles.themeColors.textPrimary} style={navBarStyles.navBarFont} />
             </Text>
           </TouchableOpacity>
         </View>

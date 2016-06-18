@@ -52,7 +52,7 @@ class Navigation extends React.Component {
 
   render = () => (
     <Navigator
-      initialRoute={routeStack[1]}
+      initialRoute={routeStack[2]}
       renderScene={this.renderScene}
       configureScene={this.configureScene}
     />
