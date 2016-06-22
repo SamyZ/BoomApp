@@ -4,7 +4,7 @@ const themeColors = {
   primary: '#53dc99',
   progressLine: '#74feb0',
   secondary: '#050505',
-  choice: '#FFF',
+  textPrimary: '#FFF',
 };
 
 const mainStyles = StyleSheet.create({
