@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Set } from 'immutable';
 import homeStyles from '../../styles/home/homeStyles';
-import { challengesRef } from '../../actions/challengesActions';
+// import { challengesRef } from '../../actions/challengesActions';
 import ChallengeView from './ChallengeView';
 
 class HomeView extends React.Component {
@@ -15,13 +15,13 @@ class HomeView extends React.Component {
   }
 
   componentWillMount = () => {
-    challengesRef.on('child_added', (snapshot /* , prevChildKey */) => {
-      const newChallenge = snapshot.val();
-      newChallenge.id = snapshot.key();
-      let challenges = this.state.challenges;
-      challenges = challenges.add(newChallenge);
-      this.setState({ challenges });
-    });
+    // challengesRef.on('child_added', (snapshot /* , prevChildKey */) => {
+    //   const newChallenge = snapshot.val();
+    //   newChallenge.id = snapshot.key();
+    //   let challenges = this.state.challenges;
+    //   challenges = challenges.add(newChallenge);
+    //   this.setState({ challenges });
+    // });
   }
 
   componentWillUnmount = () => {
@@ -33,6 +33,9 @@ class HomeView extends React.Component {
 
     return (
       <View style={homeStyles.mainContainer}>
+        <Text style={homeStyles.mainFont}>
+          HOMEVIEW YO DUDE
+        </Text>
         {this.state.challenges.map(challenge => <ChallengeView key={challenge.id} challenge={challenge} />)}
       </View>
     );

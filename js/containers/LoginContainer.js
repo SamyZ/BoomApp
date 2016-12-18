@@ -13,17 +13,15 @@ function mapStateToProps(state) {
   return state.user;
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onSignIn: (email, password, userData, navigator) => dispatch(onSignIn(email, password, userData, navigator)),
-    onSignUp: (email, password, userData, navigator) => dispatch(onSignUp(email, password, userData, navigator)),
+    onSignIn: (email, password, userData) => dispatch(onSignIn(email, password, userData, ownProps.navigator)),
+    onSignUp: (email, password, userData) => dispatch(onSignUp(email, password, userData, ownProps.navigator)),
   };
 }
 
 class LoginContainer extends React.Component {
-  onSignIn = (email, password, userData) => this.props.onSignIn(email, password, userData, this.props.navigator);
-  onSignUp = (email, password, userData) => this.props.onSignUp(email, password, userData, this.props.navigator);
-  render = () => <LoginView onSignIn={this.onSignIn} onSignUp={this.onSignUp} />
+  render = () => <LoginView onSignIn={this.props.onSignIn} onSignUp={this.props.onSignUp} />
 }
 
 LoginContainer.propTypes = propTypes;

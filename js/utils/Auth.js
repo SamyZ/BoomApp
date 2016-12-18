@@ -1,9 +1,7 @@
-import Firebase from 'firebase';
-
-const firebaseRef = new Firebase('https://appboom.firebaseio.com');
+import { auth } from 'firebase';
 
 export function createUser(email, password) {
-  return firebaseRef.createUser({ email, password }, (error) => {
+  return auth().createUserWithEmailAndPassword(email, password) /*, (error) => {
     if (error) {
       switch (error.code) {
         case 'EMAIL_TAKEN':
@@ -14,7 +12,7 @@ export function createUser(email, password) {
           break;
         case 'INVALID_PASSWORD':
           alert('Your password seems to be invalid.');
-          break;
+          br
         default:
           alert('Something terribly wrong happened, we were unable to create your account.');
           break;
@@ -23,14 +21,16 @@ export function createUser(email, password) {
       alert('Your account was created, you can now Boom yourself!');
     }
   });
+  */
 }
 
 export function authUser(email, password) {
-  return firebaseRef.authWithPassword({ email, password }, (error) => {
+  return auth().signInWithEmailAndPassword(email, password) /*, (error) => {
     if (error) {
       alert('Login Failed. Please try again');
     } else {
       // alert('Login Successful');
     }
   });
+  */
 }

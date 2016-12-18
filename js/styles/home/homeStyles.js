@@ -7,6 +7,11 @@ const homeStyles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: mainStyles.themeColors.secondary,
   },
+  mainFont: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: mainStyles.themeColors.textPrimary,
+  },
 });
 
 export default homeStyles;

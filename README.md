@@ -20,7 +20,7 @@ on sport you share with them.
 
 - [React Native](https://facebook.github.io/react-native/) `0.26.0` for building native apps using react
 - [Babel](http://babeljs.io/) `6.x.x` for ES6+ support
-- [Firebase](https://firebase.google.com/) for iOS development
+- [Firebase](https://firebase.google.com/)
 
 ## UX Guideline
 

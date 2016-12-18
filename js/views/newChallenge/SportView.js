@@ -109,7 +109,7 @@ class SportView extends React.Component {
               label={challenge.label}
               style={challenge.style}
               onItemSelect={this.selectChallenge}
-            />)
+             />)
           )}
         </View>
         {this.state.challenge ?
